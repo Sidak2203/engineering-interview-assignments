@@ -1,0 +1,53 @@
+Strech Requirements - Cloud Deployment Strategy
+Using AWS Glue & S3
+
+While this assignment does not require cloud deployment, a real-world implementation would benefit from an automated and scalable cloud-based architecture. This solution would leverage AWS Glue for data transformation and Amazon S3 for storage and event-driven processing.
+
+AWS Services Used
+1. Amazon S3 (Storage)
+  Stores input files (races.csv, results.csv).
+  Stores processed JSON output files (stats_{year}.json).
+  Supports event-based triggers to initiate data processing upon new file uploads.
+2. AWS Glue (ETL & Processing)
+  Processes data using AWS Glue PySpark jobs.
+  Reads from S3, transforms data, and writes JSON output back to S3.
+  Can be scheduled or triggered automatically after each race.
+3. AWS Lambda (Job Triggering)
+  Monitors S3 for new file uploads and triggers AWS Glue jobs.
+  Ensures the pipeline runs only when required, reducing operational costs.
+4. AWS Step Functions (Workflow Orchestration)
+  Manages the end-to-end workflow from file ingestion to processing and storage.
+  Provides automated error handling, retries, and monitoring.
+
+Deployment Plan
+Step 1: Store Source Data in S3
+  Create an S3 bucket (f1-race-data).
+  Upload input CSV files (races.csv, results.csv) to s3://f1-race-data/source-data/.
+Step 2: AWS Glue Job for Data Processing
+  Create an AWS Glue job using PySpark.
+  Read data from s3://f1-race-data/source-data/.
+  Transform data into the required JSON format.
+  Write the processed output to s3://f1-race-data/results/stats_{year}.json.
+Step 3: Automate Processing with Event Triggers  
+  Option 1: Event-based Trigger
+  Configure an S3 event notification to trigger an AWS Lambda function when a new race file is uploaded.
+  The Lambda function will initiate the AWS Glue job to process the data.
+Option 2: Scheduled Execution
+  Use AWS Glue Scheduler to run data processing at scheduled intervals, such as after each race weekend.
+  Key Considerations
+1. Scalability
+  AWS Glue is serverless and automatically scales based on data volume.
+  S3 provides virtually unlimited storage at a low cost.
+2. Security
+  IAM roles and policies should be used to control access to S3 and AWS Glue.
+  Enable S3 versioning to maintain a history of uploaded files.
+3. Cost Optimization
+  AWS Glue only runs when triggered, ensuring cost efficiency.
+  Storing processed data in Parquet format (instead of JSON) can improve performance and reduce storage costs.
+  Example AWS Architecture
+  Upload raw race data (races.csv, results.csv) to S3 (source-data/).
+  S3 event triggers AWS Lambda, which starts an AWS Glue job.
+  AWS Glue reads CSV files, processes the data, and writes the results to S3 (results/).
+  Processed JSON files are stored in S3 (stats_{year}.json).
+
+This approach ensures an automated, scalable, and cost-effective data pipeline suitable for real-time race analytics.
