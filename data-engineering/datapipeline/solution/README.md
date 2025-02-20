@@ -33,14 +33,23 @@ solution/
 **Prerequisites**
 
 ¬Ensure Python 3.x is installed.
+
 ¬Install required dependencies using:
+
   pip install pandas pytest
+  
 ¬Running the Pipeline
+
 ¬To execute the pipeline and generate JSON output files:
+
   python main.py
+  
 This will process data from source-data/ and save JSON results inside the results/ folder.
+
 ¬Output JSON files follow the format:
+
   results/stats_YYYY.json  #Example: stats_2024.json
+  
 
 **Stretch Goals Implemented**
 
