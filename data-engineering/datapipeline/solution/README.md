@@ -5,9 +5,6 @@ This project implements an automated Formula 1 race data pipeline that processes
 
 Project Structure
 
-graphql
-Copy
-Edit
 solution/  
 │── source-data/        # Contains input CSV files (races.csv, results.csv)  
 │── results/            # Stores generated JSON output files  
@@ -24,27 +21,18 @@ Prerequisites
 
 Ensure Python 3.x is installed.
 Install required dependencies using:
-nginx
-Copy
-Edit
 pip install pandas pytest
+
 Running the Pipeline
 To execute the pipeline and generate JSON output files:
-
-css
-Copy
-Edit
 python main.py
 This will process data from source-data/ and save JSON results inside the results/ folder.
 
 Output JSON files follow the format:
-
-bash
-Copy
-Edit
 results/stats_YYYY.json  # Example: stats_2024.json
-Stretch Goals Implemented
 
+
+Stretch Goals Implemented
 1. Unit Testing
 A unit testing script (test_main.py) was created to validate pipeline functionality.
 The test suite ensures correctness of:
@@ -53,11 +41,8 @@ Data loading
 Data transformation logic
 JSON file writing
 To run tests:
-
-nginx
-Copy
-Edit
 pytest test_main.py
+
 2. Cloud Deployment Considerations
 Cloud deployment considerations have been documented in cloud_deploy_stretch.txt.
 This includes details on how AWS Glue and S3 can be used to automate the pipeline in a cloud environment.
