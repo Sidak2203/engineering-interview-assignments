@@ -80,7 +80,7 @@ This will process data from source-data/ and save JSON results inside the result
   results/stats_YYYY.json  #Example: stats_2024.json
   
 
-**Stretch Goals Implemented**
+**Stretch Goals Implementation**
 
 **1. Unit Testing**
 
