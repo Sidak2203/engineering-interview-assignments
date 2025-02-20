@@ -43,6 +43,6 @@ JSON file writing
 To run tests:
 pytest test_main.py
 
-2. Cloud Deployment Considerations
-Cloud deployment considerations have been documented in cloud_deploy_stretch.txt.
+**2. Cloud Deployment Considerations
+**Cloud deployment considerations have been documented in cloud_deploy_stretch.txt.
 This includes details on how AWS Glue and S3 can be used to automate the pipeline in a cloud environment.
